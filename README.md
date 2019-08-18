@@ -28,7 +28,7 @@ For example on Ubuntu, Debian, Mint, and PopOS based systems:
   ```
 Next step is to install the needed python packages that can be done by using `pip3` or just `pip` depending on if you have python2 installed. 
 ```
-  pip install requests
+  pip3 install requests
 ```
 A [N2YO](n2yo.com) api-key needs to be generated before running the code. This can be accomplished by going to [N2YO.com](n2yo.com) creating an acount and then generating an key. This will be used for tracking infromation. 
 
