@@ -43,7 +43,7 @@ Before running `NOAA-A.py` a few lines need to be modified. Open the file in a t
 
   homeLng=#Add location Latitude Here in decimal form
 ```
-Making sure to add teh api-key generated in the previous steps and the Lat/Long of the antenna. 
+Making sure to add the api-key generated in the previous steps and the Lat/Long of the antenna. 
 
 ## Running
 Run the program by 
