@@ -100,5 +100,7 @@ def Automation():
 while(True):
     try:
         Automation()
+    except (KeyboardInterrupt, SystemExit):
+        raise
     except:
         print("Encountered an Error Trying Again")
