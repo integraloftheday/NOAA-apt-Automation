@@ -49,6 +49,6 @@ Run the program by
 ``` 
 python3 NOAA-A.py
 ```
-The script then will fill its directory with both the .wav recording and the .png files for every pass of NOAA15, NOAA18 and NOAA19. The outputed files would be created in the following format `NOAA#_UNIXTIMESTAMP.png or .wav`. Due to error catching the entire terminal needs to be halted. 
+The script then will fill its directory with both the .wav recording and the .png files for every pass of NOAA15, NOAA18 and NOAA19. The outputed files would be created in the following format `NOAA#_UNIXTIMESTAMP.png or .wav`.
 
 
