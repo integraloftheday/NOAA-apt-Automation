@@ -2,7 +2,7 @@ import requests
 import json
 import time
 import os
-#apiKey K5AYJP-4HLLAN-DKE6WR-45RP
+
 apiKey="add-api-key-here"
 
 #NOAA-15
