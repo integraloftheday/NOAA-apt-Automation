@@ -8,7 +8,8 @@ class satTrack {
         this.id = tle2.split(" ")[1]
 
         this.sat = satellite.twoline2satrec(this.tle1, this.tle2);
-        this.period = 1/(this.tle2.replace(/  +/g, ' ').split(" ").slice(-2)[0] / 86400); // in revolutions per second
+        console.log(this.tle2.replace(/  +/g, ' ').split(" ").slice(-2)[0]);
+        this.period = 1/(this.tle2.slice(52,62) / 86400); // in revolutions per second
         this.observer = {
             longitude: satellite.degreesToRadians(longO),
             latitude: satellite.degreesToRadians(latO),
@@ -130,7 +131,7 @@ class satTrack {
         return(m);
     }
 
-    passes(startDate,duration,minAngle){
+    passes(startDate,duration,minAngle){ //minAngle in radians
         var startU = startDate.getTime() / 1000;
         var rise;
         var set;

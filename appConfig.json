@@ -1,0 +1,6 @@
+{
+    "tle":{
+        "fetchUrl":"http://www.celestrak.com/NORAD/elements/weather.txt",
+        "maxTleAgeDays":2
+    }
+}

@@ -1,7 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 
-var download = function(url, dest, cb) {
+var tleDownload = function(url, dest, cb) {
   var file = fs.createWriteStream(dest);
   var request = http.get(url, function(response) {
     response.pipe(file);
@@ -14,4 +14,4 @@ var download = function(url, dest, cb) {
   });
 };
 
-module.exports = download; 
+module.exports = tleDownload; 

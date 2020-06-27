@@ -2,7 +2,7 @@ const fs = require('fs');
 const byline = require('byline');
 
 
-function tleParse(fileNameIn,write=true,pathOut='./src/tle.json'){
+function tleParse(fileNameIn,pathOut='./src/tle.json',callback){
     var parsedJson= {'time':String(new Date())}; 
     var counter = 0;
     var name, tle1, tle2, id; 
@@ -27,18 +27,19 @@ function tleParse(fileNameIn,write=true,pathOut='./src/tle.json'){
             }
         }
         counter++;
-        lineReader.on('close',function(){
-            if(write==true && Object.keys(parsedJson).length > 1){ // makes sure parsedJson included parsed data. Then writes that to file
-                try {
-                  fs.writeFileSync(pathOut, JSON.stringify(parsedJson))
-                } catch (err) {
-                    console.error(err)
-                }
-            }
-            return(parsedJson);
-        });
     });
-
+    lineReader.on('close',function(){
+        if(Object.keys(parsedJson).length > 1){ // makes sure parsedJson included parsed data. Then writes that to file
+            console.log("Hello")
+            try {
+                fs.writeFileSync(pathOut, JSON.stringify(parsedJson));
+                callback(parsedJson);
+            } catch (err) {
+                console.error(err)
+            }
+        }
+        
+    });
 }
 
 module.exports = tleParse;
