@@ -4,9 +4,9 @@ This branch is a rewrite of NOAA-apt-Automation in Node js. This version has add
 
 ## To do 
 - [x] Fetch TLE data without the use of an API
-- [ ] Finish satellite transit finder 
+- [x] Finish satellite transit finder 
 - [ ] Speed up image loading in the website 
-- [ ] Create new documenation 
+- [ ] Create new documenation / Improve code comments
 
 
 

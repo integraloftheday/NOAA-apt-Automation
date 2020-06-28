@@ -61,7 +61,15 @@ class HomePage extends Component {
         );
         }
         else{
-            return(<div class ="Home"><NavBar active = {"Home"}/> <h1>Loading</h1></div>);
+            return(<div class ="Home">
+                    <div class="container fluid">
+                        <div class="row">
+                            <div class="col text-center">
+                                <NavBar active = {"Home"}/><h1>Loading</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>);
         }
     }
 }

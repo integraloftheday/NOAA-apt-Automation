@@ -6,7 +6,7 @@ class TrackList extends Component {
 
     render(){
         const data = this.props.passInfo; 
-        const Time_Zone_Convert = 25200;
+        const Time_Zone_Convert = new Date().getTimezoneOffset()*60;
         //example data
         /*{
             "startAz": 181.49,
@@ -41,7 +41,7 @@ class TrackList extends Component {
                             <td>{(new Date((data.startUTC - Time_Zone_Convert) *1000)).toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ")}</td>
                             <td>{(new Date((data.endUTC - Time_Zone_Convert) *1000)).toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ")}</td>
                             <td>{Math.round((data.endUTC-data.startUTC)/60)}m:{(data.endUTC-data.startUTC)%60}s</td>
-                            <td>{data.maxEl}˚</td>
+                            <td>{Math.round(data.maxEl)}˚</td>
                             </tr>
                         </tbody>
                         </table>

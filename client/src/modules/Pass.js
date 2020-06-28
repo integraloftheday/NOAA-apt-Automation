@@ -7,7 +7,7 @@ import NavBar from './NavBar.js';
 class Pass extends Component {
 
     render(){
-        const Time_Zone_Convert = 25200;
+        const Time_Zone_Convert = new Date().getTimezoneOffset()*60;
         var passName; 
         passName = this.props.match.params.name;
 

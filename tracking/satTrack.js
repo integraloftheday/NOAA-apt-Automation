@@ -8,7 +8,6 @@ class satTrack {
         this.id = tle2.split(" ")[1]
 
         this.sat = satellite.twoline2satrec(this.tle1, this.tle2);
-        console.log(this.tle2.replace(/  +/g, ' ').split(" ").slice(-2)[0]);
         this.period = 1/(this.tle2.slice(52,62) / 86400); // in revolutions per second
         this.observer = {
             longitude: satellite.degreesToRadians(longO),
@@ -138,8 +137,10 @@ class satTrack {
         var extrema = [];
         var passes = [];
         var anglesStart, anglesEnd, anglesMax;
-        for(var s = startU; s<startU+duration;s+=this.period/2){
-            extrema.push(this.maxElevation(s,s+this.period/2,1));
+        var extremaStart =  this.maxElevation(startU-this.period,startU)[1];
+
+        for(var s = extremaStart; s<duration+extremaStart;s+=this.period){
+            extrema.push(this.maxElevation(s-this.period/2,s+this.period/2,1));
         }
         //console.log(extrema);
         for(var i=0;i<extrema.length;i++){
@@ -160,14 +161,15 @@ class satTrack {
                         "endAz":anglesEnd.degree.azimuth,
                         "endEl":anglesEnd.degree.elevation,
                         "endUTC":Math.round(set),
-                        "duration":Math.round(set-rise)
+                        "duration":Math.round(set-rise),
+                        "satName":this.satName
                     });
             }
         }
         return({
             "info":{
                 "satid":this.id,
-                "satname":this.satName,
+                "satName":this.satName,
                 "passescount":passes.length
             },
             "passes":passes

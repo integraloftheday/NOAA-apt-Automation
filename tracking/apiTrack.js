@@ -12,22 +12,22 @@ function readJson(callback){
     var tleDate;
     console.log("readJson starting");
     try{
-        tleJson = JSON.parse(fs.readFileSync('./tle.json','utf8'));
+        tleJson = JSON.parse(fs.readFileSync('./tracking/tle.json','utf8'));
         callback(tleJson);
     }
     catch(err){
         console.log(err);
-        tleDownload(configJson.tle.fetchUrl,'./tle.txt',()=>{
-            tleParse('./tle.txt',true,'./tle.json');
-            tleJson = JSON.parse(fs.readFileSync('./tle.json','utf8'));
+        tleDownload(configJson.tle.fetchUrl,'./tracking/tle.txt',()=>{
+            tleParse('./tracking/tle.txt',true,'./tracking/tle.json');
+            tleJson = JSON.parse(fs.readFileSync('./tracking/tle.json','utf8'));
             callback(tleJson)
         });
     }
     tleDate = new Date(tleJson.time);
     if(((new Date() - tleDate)/86400000) > configJson.tle.maxTleAgeDays){
-        console.log("Update");
-        tleDownload(configJson.tle.fetchUrl,'./tle.txt',()=>{
-            tleParse('./tle.txt','./tle.json',(parsedJson)=>{
+        console.log("Updating Json Data");
+        tleDownload(configJson.tle.fetchUrl,'./tracking/tle.txt',()=>{
+            tleParse('./tracking/tle.txt','./tracking/tle.json',(parsedJson)=>{
                 callback(parsedJson);
             });
         });
@@ -39,14 +39,12 @@ function readJson(callback){
 function getPasses(NoradId,lat,long,alt,duration,minAngle,callback){ // duration into the future in days
     var satJson;
     var satObj; //an instance of satTrack
-    console.log("start");
+    console.log("startign getPasses");
     readJson(((parsedJson)=>{
-        console.log("start Callback");
         try{
             satJson = parsedJson[String(NoradId)]
             console.log("Working");
             satObj = new satTrack(satJson.tle1,satJson.tle2,satJson.name,lat,long,alt);
-            console.log(satObj);
             callback(satObj.passes(new Date(),duration*86400,(minAngle / 180)*Math.PI));
         }
         catch(err){

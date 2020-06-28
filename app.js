@@ -5,12 +5,13 @@ const path = require('path');
 var glob = require("glob")
 const fs = require('fs');
 //File System Actions
-const csv = require("csv-parse");
+//const csv = require("csv-parse");
 //var dur = require('./duration.js');
 const readLastLines = require('read-last-lines');
 
 //User
 const apiTrack = require('./tracking/apiTrack.js');
+const appConfig = JSON.parse(fs.readFileSync('./appConfig.json'));
 
 
 var app = express();
@@ -137,11 +138,15 @@ app.get('/api/v1/current/:measure', function (req,res){
   }
   });
 
-app.get('/api/v1/passes/:id/:lat/:long/:alt/:days/:minAngle', function (req,res) { //Has not been tested yet 
+app.get('/api/v1/passes/:id/:lat/:long/:alt/:days/:minAngle', function (req,res) {
 
   apiTrack(req.params.id,req.params.lat,req.params.long,req.params.alt,req.params.days,req.params.minAngle,(parsedJson)=>{
     res.status(200).json(parsedJson);
   });
+});
+
+app.get('/api/v1/config', function (req,res){
+  res.status(200).json(appConfig);
 });
 
   app.post('/api/v1/measure/range', function (req, res) {
@@ -191,3 +196,4 @@ app.get('*', function(req,res){
 module.exports = app;
 
 //app.listen(81);
+

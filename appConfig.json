@@ -2,5 +2,19 @@
     "tle":{
         "fetchUrl":"http://www.celestrak.com/NORAD/elements/weather.txt",
         "maxTleAgeDays":2
+    },
+    "tracking":{
+        "days":1,
+        "minAngle":10,
+        "weatherIDs":[25338,28654,33591,40069],
+        "IssTV":[25544],
+        "location":{
+            "lat":33.45,
+            "long":-112.07,
+            "alt":0
+        }
+    },
+    "processing":{
+        
     }
 }
