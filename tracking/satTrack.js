@@ -162,7 +162,8 @@ class satTrack {
                         "endEl":anglesEnd.degree.elevation,
                         "endUTC":Math.round(set),
                         "duration":Math.round(set-rise),
-                        "satName":this.satName
+                        "satName":this.satName,
+                        "satid":this.id
                     });
             }
         }

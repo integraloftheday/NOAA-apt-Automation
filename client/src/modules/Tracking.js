@@ -9,23 +9,20 @@ class Tracking extends Component {
 
     state={
         "config":null,
-        "satPasses":null,
-        "NOAA15":null,
-        "NOAA18":null,
-        "NOAA19":null
+        "satPasses":null
     };
 
     componentDidMount(){
         //Hard coded the latitude and longitude
         var getUrl = window.location;
         var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
-        baseUrl = "http://localhost:3000";
+        baseUrl = "http://localhost:3000"; // for debugging
         var promisesUrl=[];
         fetch(baseUrl+"/api/v1/config")
             .then((config) => config.json())
             .then((config)=> {
-                for(var i in config.tracking.weatherIDs){ //apiTrack(req.params.id,req.params.lat,req.params.long,req.params.alt,req.params.days,req.params.minAngle,(parsedJson)
-                    promisesUrl.push(`${baseUrl}/api/v1/passes/${config.tracking.weatherIDs[i]}/${config.tracking.location.lat}/${config.tracking.location.long}/${config.tracking.location.alt}/${config.tracking.days}/${config.tracking.minAngle}`);
+                for(var i in config.tracking.ids){ //apiTrack(req.params.id,req.params.lat,req.params.long,req.params.alt,req.params.days,req.params.minAngle,(parsedJson)
+                    promisesUrl.push(`${baseUrl}/api/v1/passes/${config.tracking.ids[i]}/${config.tracking.location.lat}/${config.tracking.location.long}/${config.tracking.location.alt}/${config.tracking.days}/${config.tracking.minAngle}`);
                 }
                 console.log(promisesUrl);
                 Promise.all(promisesUrl.map(url => fetch(url).then(result =>result.json())))
@@ -33,10 +30,7 @@ class Tracking extends Component {
                             console.log("Response")
                             console.log(value);
                             this.setState({
-                                "satPasses":value,
-                                "NOAA15":value[0],
-                                "NOAA18":value[1],
-                                "NOAA19":value[2]
+                                "satPasses":value
                             });
                             //console.log(this.state);
                     })
@@ -44,8 +38,6 @@ class Tracking extends Component {
                         console.log(err);
                     });
             });
-
-
     }
 
     render(){
@@ -55,18 +47,15 @@ class Tracking extends Component {
             for(var i in this.state.satPasses){
                 console.log(this.state.satPasses[i].passes);
                 allPasses = allPasses.concat(this.state.satPasses[i].passes);
+                allPasses.sort((a,b) =>{
+                    return(a.startUTC - b.startUTC); 
+                });
+                result=allPasses.map((item)=>{
+                    return(<TrackList passInfo={item}/>)
+                });
             }
             console.log("ALL PASSES");
             console.log(allPasses);
-        }
-
-        if(this.state.NOAA15 != null){
-            allPasses.sort((a,b) =>{
-                return(a.startUTC - b.startUTC); 
-            });
-            result=allPasses.map((item)=>{
-                return(<TrackList passInfo={item}/>)
-            });
         }
         else{
             result=<h1>Loading</h1> 

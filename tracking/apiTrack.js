@@ -39,11 +39,10 @@ function readJson(callback){
 function getPasses(NoradId,lat,long,alt,duration,minAngle,callback){ // duration into the future in days
     var satJson;
     var satObj; //an instance of satTrack
-    console.log("startign getPasses");
+    console.log("starting getPasses");
     readJson(((parsedJson)=>{
         try{
             satJson = parsedJson[String(NoradId)]
-            console.log("Working");
             satObj = new satTrack(satJson.tle1,satJson.tle2,satJson.name,lat,long,alt);
             callback(satObj.passes(new Date(),duration*86400,(minAngle / 180)*Math.PI));
         }
@@ -51,7 +50,6 @@ function getPasses(NoradId,lat,long,alt,duration,minAngle,callback){ // duration
             console.log(err);
             console.log("Possibly Sat ID not in tle infromation ")
         }
-
     }));
 }
 
