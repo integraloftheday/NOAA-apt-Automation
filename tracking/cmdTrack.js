@@ -33,8 +33,8 @@ function cmdTrack(){
     //first
     //get appConfig.json and allPasses by calling getTransits
     getTransits((config,allPasses) => {
-        console.log(config);
-        setInterval((conig,allPasses) => {
+        console.log("STARTING CMD TRACK");
+        setInterval((config,allPasses) => {
             if(allPasses[0].startUTC <= Math.floor(new Date() / 1000)){
                 var processingSat = config.processing.find((item) => item.id == allPasses[0].satid); //processing object in appConfig
                 var unixTime = Math.floor(new Date() / 1000);
@@ -45,7 +45,9 @@ function cmdTrack(){
                     var command = processingSat.commands[i];
                     command = command.replace("{t}",unixTime);
                     command = command.replace("{d}",duration);
-                    child_process.execSync(command);
+                    console.log("starting: "+command);
+                    spawnSync(command);
+                    require("child_process").execSync(command).toString()
 
                     //remove the first item in array 
                     allPasses.shift();

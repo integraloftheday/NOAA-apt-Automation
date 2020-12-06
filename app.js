@@ -15,7 +15,7 @@ const cmdTrack = require("./tracking/cmdTrack.js");
 const appConfig = JSON.parse(fs.readFileSync('./appConfig.json'));
 
 //start tracking function 
-//cmdTrack(); 
+cmdTrack(); 
 
 var app = express();
 app.use(bodyParser.json());

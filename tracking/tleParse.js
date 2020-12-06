@@ -30,7 +30,6 @@ function tleParse(fileNameIn,pathOut='./src/tle.json',callback){
     });
     lineReader.on('close',function(){
         if(Object.keys(parsedJson).length > 1){ // makes sure parsedJson included parsed data. Then writes that to file
-            console.log("Hello")
             try {
                 fs.writeFileSync(pathOut, JSON.stringify(parsedJson));
                 callback(parsedJson);

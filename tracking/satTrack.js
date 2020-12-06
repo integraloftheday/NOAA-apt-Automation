@@ -176,9 +176,6 @@ class satTrack {
             "passes":passes
         });
     }
-    test(){
-        return("HELLO")
-    }
 
 }
 

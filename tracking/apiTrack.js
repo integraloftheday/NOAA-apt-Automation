@@ -16,11 +16,12 @@ function readJson(callback){
         callback(tleJson);
     }
     catch(err){
-        console.log(err);
+        console.log("Downloading Json");
         tleDownload(configJson.tle.fetchUrl,'./tracking/tle.txt',()=>{
-            tleParse('./tracking/tle.txt',true,'./tracking/tle.json');
-            tleJson = JSON.parse(fs.readFileSync('./tracking/tle.json','utf8'));
-            callback(tleJson)
+            tleParse('./tracking/tle.txt','./tracking/tle.json',(parsedJson)=>{
+                callback(parsedJson);
+            });
+            
         });
     }
     tleDate = new Date(tleJson.time);

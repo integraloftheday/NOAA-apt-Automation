@@ -40,7 +40,7 @@
             {
                 "id":40069,
                 "name":"METEOR",
-                "commands":[]
+                "commands":["timeout {d} rtl_fm -M raw -f 137100000 -s 288k -g 48 | sox -t raw -r 288k -c 2 -b 16 -e s - -t wav ../METEOR_{t}.wav rate 96k","meteor_demod -B -o ../METEOR_OUT_{t}.qpsk ../METEOR_{t}.wav","medet_arm ../METEOR_OUT_{t}.qpsk ../METEOR_{t} -cd","rm ../METEOR_OUT_{t}.qpsk","medet_arm ../METEOR_{t}.dec ../METEOR_{t}.png -r 65 -g 65 -b 64 -d"]
             },
             {
                 "id":25544,

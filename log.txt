@@ -1,0 +1,43 @@
+
+> back-end@0.0.0 start /Users/mcmanetta/Documents/Code/NOAA-apt-Automation
+> node ./bin/www
+
+[
+  'http://localhost:3000/api/v1/passes/25338/33.45/-112.07/0/1/10',
+  'http://localhost:3000/api/v1/passes/28654/33.45/-112.07/0/1/10',
+  'http://localhost:3000/api/v1/passes/33591/33.45/-112.07/0/1/10',
+  'http://localhost:3000/api/v1/passes/40069/33.45/-112.07/0/1/10',
+  'http://localhost:3000/api/v1/passes/25544/33.45/-112.07/0/1/10'
+]
+starting getPasses
+readJson starting
+starting getPasses
+readJson starting
+starting getPasses
+readJson starting
+starting getPasses
+readJson starting
+starting getPasses
+readJson starting
+{
+  tle: {
+    fetchUrl: 'http://celestrak.com/NORAD/elements/active.txt',
+    maxTleAgeDays: 2
+  },
+  tracking: {
+    days: 1,
+    minAngle: 10,
+    ids: [ 25338, 28654, 33591, 40069, 25544 ],
+    issTV: false,
+    reTime: 30,
+    location: { lat: 33.45, long: -112.07, alt: 0 }
+  },
+  processing: [
+    { id: 'all', commands: 'python3 ./tracking/temp.py' },
+    { id: 25338, name: 'NOAA15', commands: [Array] },
+    { id: 28654, name: 'NOAA18', commands: [Array] },
+    { id: 33591, name: 'NOAA19', commands: [Array] },
+    { id: 40069, name: 'METEOR', commands: [] },
+    { id: 25544, name: 'ISS', commands: [] }
+  ]
+}
