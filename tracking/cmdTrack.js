@@ -61,7 +61,12 @@ function cmdTrack(){
                     command = command.replace("{d}",duration);
                     command = command.replace("{r}",ISODateString(new Date(allPasses[0].startUTC*1000)));
                     console.log("starting: "+command);
-                    require("child_process").execSync(command).toString()
+                    try{
+                        require("child_process").execSync(command).toString()
+                    }
+                    catch(error){
+                        console.log("cmdTrackError: "+String(error));
+                    }
 
                     //remove the first item in array 
                     allPasses.shift();
