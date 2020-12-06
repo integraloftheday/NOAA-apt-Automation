@@ -25,17 +25,17 @@
             {
                 "id":25338,
                 "name":"NOAA15",
-                "commands":["timeout {d} rtl_fm -f 137620000 -g 49.6 -s 48k -E deemp -F 9 - | sox -t raw -e signed -c 1 -b 16 -r 48000 - ../NOAA15_{t}.wav rate 11025", "noaa-apt -p fast -o ../NOAA15_{t}.png ../NOAA15_{t}.wav"]
+                "commands":["timeout {d} rtl_fm -f 137620000 -g 49.6 -s 48k -E deemp -F 9 - | sox -t raw -e signed -c 1 -b 16 -r 48000 - ../NOAA15_{t}.wav rate 11025", "noaa-apt -m yes -t {r} -s noaa_15 -p fast -o ../NOAA15_{t}.png ../NOAA15_{t}.wav"]
             },
             {
                 "id":28654,
                 "name":"NOAA18",
-                "commands":["timeout {d} rtl_fm -f 137620000 -g 49.6 -s 48k -E deemp -F 9 - | sox -t raw -e signed -c 1 -b 16 -r 48000 - ../NOAA18_{t}.wav rate 11025", "noaa-apt -p fast -o ../NOAA18_{t}.png ../NOAA18_{t}.wav"]
+                "commands":["timeout {d} rtl_fm -f 137620000 -g 49.6 -s 48k -E deemp -F 9 - | sox -t raw -e signed -c 1 -b 16 -r 48000 - ../NOAA18_{t}.wav rate 11025", "noaa-apt -m yes -t {r} -s noaa_18 -p fast -o ../NOAA18_{t}.png ../NOAA18_{t}.wav"]
             },
             {
                 "id":33591,
                 "name":"NOAA19",
-                "commands":["timeout {d} rtl_fm -f 137620000 -g 49.6 -s 48k -E deemp -F 9 - | sox -t raw -e signed -c 1 -b 16 -r 48000 - ../NOAA19_{t}.wav rate 11025", "noaa-apt -p fast -o ../NOAA19_{t}.png ../NOAA19_{t}.wav"]
+                "commands":["timeout {d} rtl_fm -f 137620000 -g 49.6 -s 48k -E deemp -F 9 - | sox -t raw -e signed -c 1 -b 16 -r 48000 - ../NOAA19_{t}.wav rate 11025", "noaa-apt -m yes -t {r} -s noaa_19 -p fast -o ../NOAA19_{t}.png ../NOAA19_{t}.wav"]
             },
             {
                 "id":40069,

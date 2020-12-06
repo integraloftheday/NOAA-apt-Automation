@@ -29,6 +29,20 @@ function getTransits(callback){
             });
 }
 
+/* use a function for the exact format desired... */
+function ISODateString(d){
+    function pad(n){return n<10 ? '0'+n : n}
+    return d.getUTCFullYear()+'-'
+         + pad(d.getUTCMonth()+1)+'-'
+         + pad(d.getUTCDate())+'T'
+         + pad(d.getUTCHours())+':'
+         + pad(d.getUTCMinutes())+':'
+         + pad(d.getUTCSeconds())+'Z'}
+   
+   var d = new Date();
+   print(ISODateString(d)); // prints something like 2009-09-28T19:03:12Z
+   
+
 function cmdTrack(){
     //first
     //get appConfig.json and allPasses by calling getTransits
@@ -45,8 +59,8 @@ function cmdTrack(){
                     var command = processingSat.commands[i];
                     command = command.replace("{t}",unixTime);
                     command = command.replace("{d}",duration);
+                    command = command.replace("{r}",ISODateString(new Date(allPasses[0].startUTC*1000)));
                     console.log("starting: "+command);
-                    spawnSync(command);
                     require("child_process").execSync(command).toString()
 
                     //remove the first item in array 
